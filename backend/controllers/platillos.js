@@ -1,143 +1,55 @@
-const Platillos = require("../models/platillos");
+const Platillo = require('../models/platillos');
 
-
-
-exports.crearOrdenes = async (req, res) => {
-
+exports.verPlatillo = async (req, res) => {
     try {
-
-        const ordenes = new Ordenes(req.body);
-
-
-
-        await ordenes.save();
-
-        res.send(clientes);
-
-
-
-
-
-    } catch (error) {
-
-        console.log(error);
-
-        res.status(500).send('Hubo un error');
-
-    }
-
-}
-
-
-
-exports.obtenerOrden = async (req, res) => {
-
-
-
-    try {
-
-        const { idMesa } = req.params;
-
-        const ordenes = await Ordenes.findOne(idMesa);
-
-        res.json(ordenes);
-
-
-
-
-
-    } catch (error) {
-
-        console.log(error);
-
-        res.status(500).send('Hubo un error');
-
-    }
-
-
-
-}
-
-
-
-
-
-exports.actualizarOrdenes = async (req, res) => {
-
-
-
-    try {
-
-
-
         const { id } = req.params;
-
-        const { estado } = req.body;
-
-
-
-        const ordenes = await Orden.findByIdAndUpdate(
-
-            id,
-
-            { estado },
-
-            { new: true, runValidators: true }
-
-        );
-
-        res.json(ordenes);
-
+        const plato = await Platillo.findById(id);
+        res.status(200).json({ message: "Platillos encontrados", data: plato });
     } catch (error) {
-
-        console.log(error);
-
-        res.status(500).send('Hubo un error');
-
+        res.status(500).send(error.message);
     }
+};
 
-
-
-}
-
-
-
-exports.eliminarOrdenes = async (req, res) => {
-
-
-
+exports.obtenerPlatillos = async (req, res) => {
     try {
-
-
-
-        let ordenes = await Ordenes.findById(req.params.id);
-
-
-
-        if (!ordenes) {
-
-            res.status(404).json({ msg: 'No existen ordenes' });
-
-        }
-
-
-
-        ordenes = await Ordenes.findOneAndRemove(req.params.id);
-
-
-
-        res.json({ msg: 'El cliente: ' + ordenes.nombre + ' se ha eliminado' });
-
-
-
+        const plato = await Platillo.find();
+        res.send(plato);
     } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
 
-        console.log(error);
+exports.añadirPlatillo = async (req, res) => {
+    try {
+        const { nombre, ingredientes, precio, imagenes } = req.body;
+        const plato = await Platillo.create({ nombre, ingredientes, precio, imagenes });
+        res.status(201).send(plato);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
 
-        res.status(500).send('Hubo un error');
+exports.actualizarPlatillo = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { nombre, ingredientes, precio, imagenes } = req.body;
+        const plato = await Platillo.findByIdAndUpdate(
+            id,
+            { nombre, ingredientes, precio, imagenes },
+            { new: true, runValidators: true }
+        );
+        res.status(200).send(plato);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
 
-    }
-
-
-
-}
+exports.eliminarPlatillo = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Platillo.deleteOne({ _id: id });
+        res.send("Plato eliminado correctamente.");
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};

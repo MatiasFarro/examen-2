@@ -4,8 +4,6 @@ const config = require('../config/global');
 const Mesero = require("../models/mesero");
 
 exports.crearMesero = async (req, res) => {
-    
-
     try {
         
         const { nombre, email, telefono, password} = req.body;
@@ -37,18 +35,7 @@ exports.crearMesero = async (req, res) => {
 
 exports.obtenerMesero = async (req, res) => {
 
-    //const { username, password } = req.body;
-
-    /*const user = new Mesero(
-        {
-           username,
-           password
-        } 
-     );*/
-
     const { nombre, email, telefono, password } = new Mesero(req.body);
-    
-
     try {
         
         const {id} =req.params;

@@ -1,15 +1,13 @@
 //Rutas producto
 const express = require('express');
 const router = express.Router();
-const productoController = require('../controllers/productoController');
-const pdfController = require('../controllers/pdfController');
+const clienteController = require('../controllers/clientes');
 
 //api/productos
-router.post('/', productoController.crearProducto);
-router.get('/', productoController.obtenerProductos);
-router.put('/:id', productoController.actualizarProducto);
-router.get('/:id', productoController.verProducto);
-router.delete('/:id', productoController.eliminarProducto);
-router.get('/pdf', pdfController.generarPDf);
+router.post('/', clienteController.crearClientes);
+router.get('/', clienteController.obtenerCliente);
+router.put('/:id', clienteController.actualizarClientes);
+router.get('/:id', clienteController.verClientes);
+router.delete('/:id', clienteController.eliminarClientes);
 
 module.exports = router;

@@ -1,15 +1,14 @@
 //Rutas producto
 const express = require('express');
 const router = express.Router();
-const productoController = require('../controllers/productoController');
+const ordenesController = require('../controllers/ordenes');
 
 
 //api/productos
-router.post('/', productoController.crearProducto);
-router.get('/', productoController.obtenerProductos);
-router.put('/:id', productoController.actualizarProducto);
-router.get('/:id', productoController.verProducto);
-router.delete('/:id', productoController.eliminarProducto);
+router.post('/', ordenesController.crearOrdenes);
+router.get('/', ordenesController.obtenerOrden);
+router.put('/:id', ordenesController.actualizarOrdenes);
+router.delete('/:id', ordenesController.eliminarOrdenes);
 
 
 module.exports = router;

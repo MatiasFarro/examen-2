@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ClienteService } from '../../services/cliente.service';
+import { NgIf } from '@angular/common';
 
 @Component({
+  imports: [NgIf, ReactiveFormsModule],
   selector: 'app-update-client',
-  templateUrl: './update-client.component.html',
-  styleUrls: ['./update-client.component.css'],
+  templateUrl: './update-cliente.component.html',
+  styleUrls: ['./update-cliente.component.css'],
 })
 export class UpdateClientComponent implements OnInit {
   clienteId: string | null = null; // ID del cliente obtenido de la URL

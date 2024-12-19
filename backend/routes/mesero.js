@@ -9,5 +9,6 @@ router.get('/:id', meseroController.verMesero);
 router.put('/:id', meseroController.actualizarMesero);
 router.delete('/:id', meseroController.eliminarMesero);
 router.get('/', meseroController.obtenerMesero)
+router.post('/', meseroController.login)
 
 module.exports = router;

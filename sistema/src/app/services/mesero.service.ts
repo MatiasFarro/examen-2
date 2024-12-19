@@ -8,14 +8,13 @@ import { Login } from '../models/login';
     providedIn: 'root',
 })
 export class MeseroService {
-    private apiUrl = 'http://localhost:4000/api/mesero'; // URL base para los meseros
-    private auth = 'http://localhost:4000/api/auth'; // URL para login
+    private apiUrl = 'http://localhost:4000/api/meseros'; // URL base para los meseros
 
     constructor(private http: HttpClient) {}
 
     // Método para login
     login(mesero: Login): Observable<any> {
-        return this.http.post<any>(this.auth, mesero);
+        return this.http.post<any>(this.apiUrl, mesero);
     }
 
     // Obtener todos los meseros

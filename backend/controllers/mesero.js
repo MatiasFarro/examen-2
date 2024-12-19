@@ -138,3 +138,29 @@ exports.eliminarMesero = async (req, res) => {
 
 }
 
+exports.login = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+  
+      const user = await Mesero.findOne({ email });
+      if (!user) return res.status(400).json({ message: 'Credenciales inválidas' });
+  
+      const validPassword = await user.validPassword(password );
+  
+      console.log('Contraseña ingresada:', password );
+      console.log('Contraseña almacenada:', user.password );
+  
+      if (!validPassword) {
+        return res.status(401).json({ auth: false, token: null });
+      }
+  
+  
+      const token = jwt.sign({ id: user._id }, config.secret, {
+        expiresIn: 60 * 60 * 24
+      })
+  
+      res.json({ auth: true, token });
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  }

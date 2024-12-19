@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CategoriaService } from '../../services/categoria.service';
+import { NgIf } from '@angular/common';
 
 @Component({
+  imports: [NgIf, ReactiveFormsModule],
   selector: 'app-update-category',
-  templateUrl: './update-category.component.html',
-  styleUrls: ['./update-category.component.css'],
+  templateUrl: './update-categoria.component.html',
+  styleUrls: ['./update-categoria.component.css'],
 })
 export class UpdateCategoryComponent implements OnInit {
   categoriaId: string | null = null; // ID de la categoría obtenido de la URL

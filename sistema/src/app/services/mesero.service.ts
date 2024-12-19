@@ -2,33 +2,38 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Mesero } from '../models/mesero';
-import { ObjectEncodingOptions } from 'fs';
-import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import { Login } from '../models/login';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
-export class MeseroService { 
-    private apiUrl = 'http://localhost:4000/api/mesero';
+export class MeseroService {
+    private apiUrl = 'http://localhost:4000/api/mesero'; // URL base para los meseros
+    private auth = 'http://localhost:4000/api/auth'; // URL para login
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
 
+    // Método para login
     login(mesero: Login): Observable<any> {
         return this.http.post<any>(this.auth, mesero);
     }
 
+    // Obtener todos los meseros
     getMesero(): Observable<Mesero[]> {
-        return this.http.get<Mesero[]>(this.apiUrlGet);
+        return this.http.get<Mesero[]>(this.apiUrl);
     }
 
+    // Agregar un mesero
     addMesero(mesero: Mesero): Observable<any> {
         return this.http.post<Mesero>(this.apiUrl, mesero);
     }
 
+    // Actualizar un mesero
     updateMesero(id: string, mesero: Mesero): Observable<Mesero> {
         return this.http.put<Mesero>(`${this.apiUrl}/${id}`, mesero);
     }
 
+    // Eliminar un mesero
     deleteMesero(id: string): Observable<any> {
         return this.http.delete(`${this.apiUrl}/${id}`);
     }

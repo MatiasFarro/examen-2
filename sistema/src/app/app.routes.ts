@@ -10,14 +10,14 @@ import { ErrorComponent } from './pages/error/error.component';
 import { MeseroComponent } from './pages/mesero/mesero.component';
 import { UpdateClientComponent } from './pages/update-cliente/update-cliente.component';
 import { UpdateCategoryComponent } from './pages/update-categoria/update-categoria.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'home', component:HomeComponent },
-  { path: 'mesero', component: MeseroComponent},
+  { path: 'meseros', component: MeseroComponent},
   { path: 'addMesero', component: AddMeseroComponent},
   { path: 'updateMesero/:id', component: UpdateMeseroComponent},
   { path: 'clientes', component: ClientesComponent},

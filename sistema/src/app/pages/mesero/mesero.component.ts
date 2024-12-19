@@ -5,11 +5,11 @@ import { NgClass, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-listar-meseros',
+  selector: 'app-mesero',
   standalone: true,
   imports: [NgFor, NgClass, RouterLink],
-  templateUrl: './listar-meseros.component.html',
-  styleUrls: ['./listar-meseros.component.css']
+  templateUrl: './mesero.component.html',
+  styleUrls: ['./mesero.component.css']
 })
 export class MeseroComponent implements OnInit {
   meseros: Mesero[] = [];

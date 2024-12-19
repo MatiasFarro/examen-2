@@ -1,4 +1,3 @@
-<app-navbar></app-navbar>
 <div id="content" class="bg-light min-vh-100">
     <section class="container mt-5">
         <div class="d-flex flex-column align-items-center">
@@ -7,7 +6,7 @@
                 <div class="card shadow-sm rounded">
                     <div class="card-body">
                         <h3 class="fw-semibold text-dark mb-3">Edita la información del mesero</h3>
-                        <form [formGroup]="meseroForm" (ngSubmit)="actualizarMesero()">
+                        <form [formGroup]="meseroForm" (ngSubmit)="guardarCambios()">
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
                                 <input 
@@ -64,4 +63,3 @@
         </div>
     </section>
 </div>
-<app-footer />

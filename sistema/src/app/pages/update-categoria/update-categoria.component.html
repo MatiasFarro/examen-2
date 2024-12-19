@@ -1,1 +1,49 @@
+<app-navbar></app-navbar>
+<div id="content" class="bg-light min-vh-100">
+  <section class="container mt-5">
+    <div class="d-flex flex-column align-items-center">
+      <h1 class="fw-bold text-primary mb-4">Actualizar Categoría</h1>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card shadow-sm rounded">
+          <div class="card-body">
+            <h3 class="fw-semibold text-dark mb-3">Editar Información de la Categoría</h3>
+            <form [formGroup]="categoriaForm" (ngSubmit)="guardarCambios()">
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input
+                  type="text"
+                  id="nombre"
+                  formControlName="nombre"
+                  class="form-control"
+                  placeholder="Nombre de la categoría"
+                  required
+                />
+                <div
+                  *ngIf="categoriaForm.get('nombre')?.touched && categoriaForm.get('nombre')?.invalid"
+                  class="text-danger"
+                >
+                  Nombre es requerido y debe tener al menos 3 caracteres.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <textarea
+                  id="descripcion"
+                  formControlName="descripcion"
+                  class="form-control"
+                  placeholder="Descripción de la categoría"
+                  rows="3"
+                  required
+                ></textarea>
+                <div
+                  *ngIf="categoriaForm.get('descripcion')?.touched && categoriaForm.get('descripcion')?.invalid"
+                  class="text-danger"
+                >
+                  La descripción es requerida y debe tener al menos 10 caracteres.
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary w-100" [disabled]="categoriaForm.invalid">
+                Guardar Cambios
+              </button>
+              <a class="btn btn-secondary mt-3 w-100" routerLink
 

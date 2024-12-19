@@ -108,15 +108,11 @@ exports.eliminarMesero = async (req, res) => {
 
     try {
 
-        let mesero = await Mesero.findById(req.params.id);
+        const { id } = req.params;
 
-        if(!mesero){
-            res.status(404).json({ msg: 'No existen mesero'});
-        }
+        const meseroEliminado = await Mesero.findByIdAndUpdate(id, { activo: false });
 
-        mesero = await Mesero.findOneAndRemove(req.params.id);
-
-        res.json({ msg: 'El mesero ' + mesero.nombre + ' se ha eliminado' });
+        res.status(200).send(`Mesero eliminado correctamente: ${meseroEliminado.nombre}`);
         
     } catch (error) {
         console.log(error);

@@ -1,1 +1,25 @@
-<p>home works!</p>
+<app-navbar></app-navbar>
+<div id="content" class="bg-light min-vh-100">
+    <section class="container mt-5">
+        <div class="d-flex flex-column align-items-center">
+            <h1 class="fw-bold text-primary mb-4">Bienvenido a la Gestión</h1>
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="card shadow-sm rounded">
+                    <div class="card-body">
+                        <h3 class="fw-semibold text-dark mb-3">Panel de Control</h3>
+                        <p class="text-muted mb-4">Desde aquí podrás gestionar todos los aspectos de la aplicación.</p>
+                        <div class="d-flex justify-content-around">
+                            <a routerLink="/meseros" class="btn btn-lg btn-outline-primary w-45">
+                                <i class="bi-person-fill"></i> Gestionar Meseros
+                            </a>
+                            <a routerLink="/clientes" class="btn btn-lg btn-outline-success w-45">
+                                <i class="bi-person-lines-fill"></i> Gestionar Clientes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<app-footer />

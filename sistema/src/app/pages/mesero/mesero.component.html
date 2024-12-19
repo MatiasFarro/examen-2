@@ -1,1 +1,59 @@
-<p>mesero works!</p>
+<app-navbar></app-navbar>
+<div id="content" class="bg-light min-vh-100">
+    <section class="container mt-5">
+        <div class="d-flex flex-column align-items-center">
+            <h1 class="fw-bold text-primary mb-4">Gestión de Meseros</h1>
+            <div class="col-12">
+                <h3 class="fw-semibold text-dark mb-3">Lista de Meseros</h3>
+                <div class="table-container table-responsive">
+                    <table class="table table-bordered table-hover text-center bg-white shadow-sm rounded">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Teléfono</th>
+                                <th>Activo</th>
+                                <th>Eliminar</th>
+                                <th>Actualizar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let mesero of meseros; let i = index" class="align-middle">
+                                <td>{{ i + 1 }}</td>
+                                <td class="text-uppercase">{{ mesero.nombre }}</td>
+                                <td>{{ mesero.email }}</td>
+                                <td>{{ mesero.telefono }}</td>
+                                <td>
+                                    <span 
+                                        class="badge rounded-pill px-3 py-2" 
+                                        [ngClass]="mesero.activo ? 'bg-success' : 'bg-danger'">
+                                        {{ mesero.activo ? 'Activo' : 'Inactivo' }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <button 
+                                        (click)="eliminarMesero(mesero._id)" 
+                                        class="btn btn-sm btn-outline-danger">
+                                        <i class="bi-trash-fill"></i> Eliminar
+                                    </button>
+                                </td>
+                                <td>
+                                    <button 
+                                        [routerLink]="['/updateMesero', mesero._id]" 
+                                        class="btn btn-sm btn-outline-primary">
+                                        <i class="bi-pencil-fill"></i> Actualizar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a class="btn btn-lg btn-warning mt-4 shadow-sm" routerLink="/addMesero">
+                    <i class="bi-person-plus-fill"></i> Añadir Mesero
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+<app-footer />
